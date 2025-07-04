@@ -538,6 +538,9 @@
         flex: 0 0 auto;               /* keep each card’s natural width */
         scroll-snap-align: start;     /* optional: snap each card into place */
     }   
+    .magazine-mobile{
+        margin-left:17% !important;
+    }
     .section-card{
         width: 70%;
     }
@@ -743,6 +746,7 @@
                 magazineCard.innerHTML = `
                     <a style="height: 300px;" href="https://mfdatafeed.blob.core.windows.net/magazine/${magazine.pdf_url}" target="_blank" title="Open ${magazine.issue_name}">
                         <img 
+                            class="magazine-mobile"
                             style="margin: 0% 21%; max-width:100%; max-height:75%;" 
                             src="/images/magazine_covers/${magazine.image_url}" 
                             alt="${magazine.issue_name}"
