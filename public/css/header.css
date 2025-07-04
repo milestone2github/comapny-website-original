@@ -1,0 +1,308 @@
+        /* Reduced hover font size increase to 2pt */
+        .hover-increase-font:hover {
+          font-size: calc(1rem + 2pt);
+      }
+      /* Menu items styling */
+      .menu-link {
+          color: #f8f8ff; /* Off-white color */
+      }
+      .menu-link:hover {
+          color: #ffc44d; /* Yellow color on hover */
+      }
+      /* Responsive header styles */
+      @media (max-width: 767px) {
+          .desktop-menu {
+              display: none;
+          }
+      }
+
+      /* Custom styles for the "Get Started" button */
+      .get-started-button {
+          background-color: #ffc44d; /* Static yellow background */
+          color: #000000; /* Black text */
+          border: 1px solid #000000;
+      }
+      .get-started-button:hover {
+          font-size: calc(1rem + 2pt); /* Reduced font size increase on hover */
+      }
+
+      /* Submenu item spacing */
+      .submenu-item {
+          padding: 8px; /* Uniform padding */
+          margin: 2px 0;    /* Optional margin for spacing */
+          display: inline-block; /* Prevent wrapping */
+          white-space: nowrap; /* Prevent text wrapping */
+          text-align: center; /* Ensure text is centered */
+      }
+      .submenu-item:hover {
+          text-decoration: underline;
+      }
+
+      /* Submenu modal spans total width of main menu */
+      .submenu-modal {
+          position: absolute;
+          left: 0;
+          top: 100%;
+          width: max-content; /* Ensure enough space for submenu items without wrapping */
+          min-width: 200px; /* Adjust as needed to fit content */
+          display: none;
+          background-color: rgba(255, 196, 77, 0.95); /* Yellow with opacity */
+          padding: 8px;
+          z-index: 10;
+          border-radius: 0.5rem;
+          
+      }
+
+      /* Show submenu modal when hovering over the main menu item */
+      .menu-item:hover .submenu-modal {
+          display: block;
+      }
+
+      /* Custom CSS to handle mobile submenu toggle */
+      .submenu-hidden {
+          display: none;
+      }
+      .submenu-visible {
+          display: grid; /* Display as grid to enable the 3-column layout */
+          grid-template-columns: repeat(3, 1fr); /* Limit to three columns */
+          gap: 8px;
+      }
+
+      /* Sign In Modal Styles */
+      .modal {
+          position: absolute;
+          width: 80%;
+          max-width: 350px;
+          background-color: #242424; /* Match header background */
+          padding: 2rem;
+          border-radius: 0.5rem;
+          display: none;
+          z-index: 50;
+          transition: all 0.3s ease-in-out;
+          color: #000; /* Default text color for light mode */
+      }
+      .modal-content {
+          background-color: #242424; /* Match header background */
+          padding: 0.5rem;
+          border-radius: 0.5rem;
+          position: relative;
+          color: #fff; /* White text for dark mode */
+      }
+      body.dark .modal {
+          color: #fff;
+      }
+      /* Close Button (Top-Right) */
+      .modal-close {
+          position: absolute;
+          top: -1.8rem; 
+          right: 0rem; 
+          cursor: pointer;
+          color: #ffc44d; 
+          font-size: 2.5rem;
+      }
+
+      #countryCodeInput {
+          border-top-left-radius: 6px;
+          border-bottom-left-radius: 6px;
+      }
+
+      input#mobileOrEmail {
+      border: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+      }
+
+      /* remove Chrome’s focus ring */
+      input#mobileOrEmail:focus {
+      outline: none !important;
+      }
+      /* Back Button (Mirroring Close Button - Top-Left) */
+      .otp-back-button {
+          position: absolute;
+          top: -1.8rem; 
+          left: 0.5rem; 
+          cursor: pointer;
+          color: #ffc44d; 
+          font-size: 2.5rem; 
+      }
+
+      /* Center-align for Enter OTP Header */
+      .otp-header {
+          text-align: center;
+          font-weight: bold;
+      }
+      .otp-input {
+          width: 2.2rem;
+          height: 2rem;
+          text-align: center;
+          font-size: 1.5rem;
+          border: 1px solid #ccc;
+          margin: 0.5rem;
+      }
+      .sso-icons {
+          display: flex;
+          justify-content: space-around;
+          margin-top: 1rem;
+      }
+      .sso-icon {
+          width: 40px;
+          height: 40px;
+          cursor: pointer;
+      }
+      .sso-icon {
+  transition: transform 0.3s ease; /* Smooth transition effect */
+}
+
+.sso-icon:hover {
+  transform: scale(1.2); /* Scale up the logo on hover */
+}
+
+      
+      @media (max-width: 767px) {
+          .modal {
+              width: 100%;
+              height: auto;
+              border-radius: 0;
+              margin: 0;
+              top: 0;
+          }
+      }
+      /* Center alignment for Sign In text and icon */
+      .sign-in-header {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          padding-bottom: 1rem; /* Added padding at the bottom */
+      }
+      .sign-in-icon {
+          width: 25px;
+          height: 20px;
+      }
+      .sign-in-with-text{
+          font-weight: bold;
+      }
+
+#countryCodeList {
+background-color: #393939;
+position: absolute;
+left: 0;
+right: 0;
+margin-top: 6px;
+max-height: 200px;
+overflow-y: auto;
+z-index: 50;
+border-radius: 0.5rem;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+padding: 0;
+list-style: none;
+scrollbar-width: thin;
+scrollbar-color: #6b7280 transparent;
+}
+
+/* WebKit (Chrome, Edge) Scrollbar Style */
+#countryCodeList::-webkit-scrollbar {
+width: 6px;
+}
+#countryCodeList::-webkit-scrollbar-track {
+background: transparent;
+}
+#countryCodeList::-webkit-scrollbar-thumb {
+background-color: #6b7280;
+border-radius: 10px;
+}
+
+#countryCodeList li {
+padding: 10px 16px;
+cursor: pointer;
+transition: background-color 0.2s ease;
+color: #f9f9f9;
+border-bottom: 1px solid #4a4a4a;
+}
+
+#countryCodeList li:hover {
+background-color: #4f4f4f;
+}
+.contact-mobile { display: none; }
+@media (max-width: 768px) {
+  #mobileOrEmail::placeholder {
+  font-size: 10px;    /* make the text as small as you like */
+  opacity: 0.7;       /* optional: lighten the placeholder */
+}
+.header-mobile{
+  height:85px
+}
+.contact-mobile { display: block; }
+.contact-desktop { display: none; }
+#signInModal {
+  width: 90% !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+ section[style*="background-image"] div[style*="display: flex"] {
+    padding: 2rem !important;
+    align-items: center !important;
+    text-align: center;
+  }
+
+  section[style*="background-image"] h1 {
+    font-size: 2rem !important;
+  }
+
+  section[style*="background-image"] p {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
+  section[style*="background-image"] a {
+    margin: 0 auto;
+  }
+
+  /* Flex Content Blocks (Service, Impact, Team, etc.) */
+  div[style*="display: flex"][style*="flex-wrap"] {
+    flex-direction: column !important;
+    gap: 1rem;
+  }
+
+  div[style*="display: flex"][style*="flex-wrap"] > div {
+    flex: 1 1 100% !important;
+    padding: 12px !important;
+    text-align: center !important;
+  }
+
+  div[style*="display: flex"][style*="flex-wrap"] img {
+    margin: 0 auto;
+  }
+
+  /* Override right-aligned headings/texts */
+  h2[style*="text-align: right"],
+  p[style*="text-align: right"] {
+    text-align: center !important;
+  }
+
+  /* List bullet layout fix */
+  li {
+    flex-direction: column;
+    align-items: center !important;
+    text-align: center;
+  }
+
+  li span:last-child {
+    font-size: 1rem !important;
+  }
+  .mobile-flip {
+    flex-direction: column-reverse !important;
+  }
+
+  .mobile-flip h2,
+  .mobile-flip p {
+    text-align: center !important;
+  }
+  .main-class{
+      padding-top:5px;
+      width:103%;
+  }
+  
+}
+
