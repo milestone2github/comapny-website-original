@@ -1,0 +1,98 @@
+[21-Nov-2024 07:36:40 UTC] PHP Warning:  Unknown: open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in Unknown on line 0
+[21-Nov-2024 07:36:40 UTC] PHP Warning:  Phar::mapPhar(): open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in C:\ProgramData\ComposerSetup\bin\composer.phar on line 28
+[21-Nov-2024 07:36:40 UTC] PHP Warning:  require(phar://composer.phar/bin/composer): Failed to open stream: phar error: invalid url or non-existent phar "phar://composer.phar/bin/composer" in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 07:36:40 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phar://composer.phar/bin/composer' (include_path='.;.\includes;.\pear') in C:\ProgramData\ComposerSetup\bin\composer.phar:29
+Stack trace:
+#0 {main}
+  thrown in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 07:37:23 UTC] PHP Warning:  Unknown: open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in Unknown on line 0
+[21-Nov-2024 07:37:23 UTC] PHP Warning:  Phar::mapPhar(): open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in C:\ProgramData\ComposerSetup\bin\composer.phar on line 28
+[21-Nov-2024 07:37:23 UTC] PHP Warning:  require(phar://composer.phar/bin/composer): Failed to open stream: phar error: invalid url or non-existent phar "phar://composer.phar/bin/composer" in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 07:37:23 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phar://composer.phar/bin/composer' (include_path='.;.\includes;.\pear') in C:\ProgramData\ComposerSetup\bin\composer.phar:29
+Stack trace:
+#0 {main}
+  thrown in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 07:37:38 UTC] PHP Warning:  Unknown: open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in Unknown on line 0
+[21-Nov-2024 07:37:39 UTC] PHP Warning:  Phar::mapPhar(): open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in C:\ProgramData\ComposerSetup\bin\composer.phar on line 28
+[21-Nov-2024 07:37:39 UTC] PHP Warning:  require(phar://composer.phar/bin/composer): Failed to open stream: phar error: invalid url or non-existent phar "phar://composer.phar/bin/composer" in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 07:37:39 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phar://composer.phar/bin/composer' (include_path='.;.\includes;.\pear') in C:\ProgramData\ComposerSetup\bin\composer.phar:29
+Stack trace:
+#0 {main}
+  thrown in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 07:42:16 UTC] PHP Warning:  Unknown: open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in Unknown on line 0
+[21-Nov-2024 07:42:16 UTC] PHP Warning:  Phar::mapPhar(): open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in C:\ProgramData\ComposerSetup\bin\composer.phar on line 28
+[21-Nov-2024 07:42:16 UTC] PHP Warning:  require(phar://composer.phar/bin/composer): Failed to open stream: phar error: invalid url or non-existent phar "phar://composer.phar/bin/composer" in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 07:42:16 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phar://composer.phar/bin/composer' (include_path='.;.\includes;.\pear') in C:\ProgramData\ComposerSetup\bin\composer.phar:29
+Stack trace:
+#0 {main}
+  thrown in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 07:42:37 UTC] PHP Warning:  Unknown: open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in Unknown on line 0
+[21-Nov-2024 07:42:37 UTC] PHP Warning:  Phar::mapPhar(): open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in C:\ProgramData\ComposerSetup\bin\composer.phar on line 28
+[21-Nov-2024 07:42:37 UTC] PHP Warning:  require(phar://composer.phar/bin/composer): Failed to open stream: phar error: invalid url or non-existent phar "phar://composer.phar/bin/composer" in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 07:42:37 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phar://composer.phar/bin/composer' (include_path='.;.\includes;.\pear') in C:\ProgramData\ComposerSetup\bin\composer.phar:29
+Stack trace:
+#0 {main}
+  thrown in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 07:43:16 UTC] PHP Warning:  Unknown: open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in Unknown on line 0
+[21-Nov-2024 07:43:16 UTC] PHP Warning:  Phar::mapPhar(): open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in C:\ProgramData\ComposerSetup\bin\composer.phar on line 28
+[21-Nov-2024 07:43:16 UTC] PHP Warning:  require(phar://composer.phar/bin/composer): Failed to open stream: phar error: invalid url or non-existent phar "phar://composer.phar/bin/composer" in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 07:43:16 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phar://composer.phar/bin/composer' (include_path='.;.\includes;.\pear') in C:\ProgramData\ComposerSetup\bin\composer.phar:29
+Stack trace:
+#0 {main}
+  thrown in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 09:03:16 UTC] PHP Warning:  Unknown: open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in Unknown on line 0
+[21-Nov-2024 09:03:16 UTC] PHP Warning:  Phar::mapPhar(): open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in C:\ProgramData\ComposerSetup\bin\composer.phar on line 28
+[21-Nov-2024 09:03:16 UTC] PHP Warning:  require(phar://composer.phar/bin/composer): Failed to open stream: phar error: invalid url or non-existent phar "phar://composer.phar/bin/composer" in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 09:03:16 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phar://composer.phar/bin/composer' (include_path='.;.\includes;.\pear') in C:\ProgramData\ComposerSetup\bin\composer.phar:29
+Stack trace:
+#0 {main}
+  thrown in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 12:02:52 UTC] PHP Warning:  Unknown: open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in Unknown on line 0
+[21-Nov-2024 12:02:52 UTC] PHP Warning:  Phar::mapPhar(): open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in C:\ProgramData\ComposerSetup\bin\composer.phar on line 28
+[21-Nov-2024 12:02:52 UTC] PHP Warning:  require(phar://composer.phar/bin/composer): Failed to open stream: phar error: invalid url or non-existent phar "phar://composer.phar/bin/composer" in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 12:02:52 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phar://composer.phar/bin/composer' (include_path='.;.\includes;.\pear') in C:\ProgramData\ComposerSetup\bin\composer.phar:29
+Stack trace:
+#0 {main}
+  thrown in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 12:03:34 UTC] PHP Warning:  Unknown: open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in Unknown on line 0
+[21-Nov-2024 12:03:34 UTC] PHP Warning:  Phar::mapPhar(): open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in C:\ProgramData\ComposerSetup\bin\composer.phar on line 28
+[21-Nov-2024 12:03:34 UTC] PHP Warning:  require(phar://composer.phar/bin/composer): Failed to open stream: phar error: invalid url or non-existent phar "phar://composer.phar/bin/composer" in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 12:03:34 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phar://composer.phar/bin/composer' (include_path='.;.\includes;.\pear') in C:\ProgramData\ComposerSetup\bin\composer.phar:29
+Stack trace:
+#0 {main}
+  thrown in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 12:05:01 UTC] PHP Warning:  Unknown: open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in Unknown on line 0
+[21-Nov-2024 12:05:01 UTC] PHP Warning:  Phar::mapPhar(): open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in C:\ProgramData\ComposerSetup\bin\composer.phar on line 28
+[21-Nov-2024 12:05:01 UTC] PHP Warning:  require(phar://composer.phar/bin/composer): Failed to open stream: phar error: invalid url or non-existent phar "phar://composer.phar/bin/composer" in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 12:05:01 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phar://composer.phar/bin/composer' (include_path='.;.\includes;.\pear') in C:\ProgramData\ComposerSetup\bin\composer.phar:29
+Stack trace:
+#0 {main}
+  thrown in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 12:07:28 UTC] PHP Warning:  Unknown: open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in Unknown on line 0
+[21-Nov-2024 12:07:28 UTC] PHP Warning:  Phar::mapPhar(): open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in C:\ProgramData\ComposerSetup\bin\composer.phar on line 28
+[21-Nov-2024 12:07:28 UTC] PHP Warning:  require(phar://composer.phar/bin/composer): Failed to open stream: phar error: invalid url or non-existent phar "phar://composer.phar/bin/composer" in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 12:07:28 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phar://composer.phar/bin/composer' (include_path='.;.\includes;.\pear') in C:\ProgramData\ComposerSetup\bin\composer.phar:29
+Stack trace:
+#0 {main}
+  thrown in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 12:11:09 UTC] PHP Warning:  Unknown: open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in Unknown on line 0
+[21-Nov-2024 12:11:09 UTC] PHP Warning:  Phar::mapPhar(): open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in C:\ProgramData\ComposerSetup\bin\composer.phar on line 28
+[21-Nov-2024 12:11:09 UTC] PHP Warning:  require(phar://composer.phar/bin/composer): Failed to open stream: phar error: invalid url or non-existent phar "phar://composer.phar/bin/composer" in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 12:11:09 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phar://composer.phar/bin/composer' (include_path='.;.\includes;.\pear') in C:\ProgramData\ComposerSetup\bin\composer.phar:29
+Stack trace:
+#0 {main}
+  thrown in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 12:13:44 UTC] PHP Warning:  Unknown: open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in Unknown on line 0
+[21-Nov-2024 12:13:44 UTC] PHP Warning:  Phar::mapPhar(): open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in C:\ProgramData\ComposerSetup\bin\composer.phar on line 28
+[21-Nov-2024 12:13:44 UTC] PHP Warning:  require(phar://composer.phar/bin/composer): Failed to open stream: phar error: invalid url or non-existent phar "phar://composer.phar/bin/composer" in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 12:13:44 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phar://composer.phar/bin/composer' (include_path='.;.\includes;.\pear') in C:\ProgramData\ComposerSetup\bin\composer.phar:29
+Stack trace:
+#0 {main}
+  thrown in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 12:16:58 UTC] PHP Warning:  Unknown: open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in Unknown on line 0
+[21-Nov-2024 12:16:58 UTC] PHP Warning:  Phar::mapPhar(): open_basedir restriction in effect. File(C:\ProgramData\ComposerSetup\bin\composer.phar) is not within the allowed path(s): (C:/inetpub/vhosts/mnivesh.com;C:/Windows/Temp;C:\Users\milestone\AppData\Local\Temp) in C:\ProgramData\ComposerSetup\bin\composer.phar on line 28
+[21-Nov-2024 12:16:58 UTC] PHP Warning:  require(phar://composer.phar/bin/composer): Failed to open stream: phar error: invalid url or non-existent phar "phar://composer.phar/bin/composer" in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
+[21-Nov-2024 12:16:58 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'phar://composer.phar/bin/composer' (include_path='.;.\includes;.\pear') in C:\ProgramData\ComposerSetup\bin\composer.phar:29
+Stack trace:
+#0 {main}
+  thrown in C:\ProgramData\ComposerSetup\bin\composer.phar on line 29
