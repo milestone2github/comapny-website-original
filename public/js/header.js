@@ -203,53 +203,64 @@ function signInWithPassword() {
 
 // api request to login investwell 
 async function loginInvestwell(mobile) {
-    const endpoint = "/api/auth/login-investwell";
+  const endpoint = "/api/auth/login-investwell";
+  const alertItem = document.getElementById('signin-modal-alert');
 
-    let alertItem = document.getElementById('signin-modal-alert');
-    alertItem.classList.remove('text-red-500');
-    alertItem.classList.add('text-green-500');
-    alertItem.innerHTML = 'Verifying user...';
-    alertItem.classList.remove('hidden');
-
-    try {
-        const payload = { mobile: mobile };
-
-        // Open a blank tab immediately
-        const newTab = window.open("", "_blank");
-
-        const response = await fetch(endpoint, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
-            },
-            body: JSON.stringify(payload),
-        });
-
-        const data = await response.json();
-
-        if (response.ok && data.url) {
-            const redirectUrl = data.url;
-
-            // Redirect the new tab to the desired URL
-            newTab.location.href = redirectUrl;
-            alertItem.classList.add('hidden');
-            localStorage.removeItem('phone');
-            localStorage.removeItem('otpDelChnl');
-        } else {
-            // Close the tab if the response fails
-            newTab.close();
-            alertItem.classList.remove('text-green-500');
-            alertItem.classList.add('text-red-500');
-            alertItem.innerHTML = data.error;
-        }
-    } catch (error) {
-        console.error("Error in loginInvestwell:", error);
-        alertItem.classList.remove('text-green-500');
-        alertItem.classList.add('text-red-500');
-        alertItem.innerHTML = "An error occurred. Please try again.";
+  // ensure we’ll auto-reload if this page comes back from bfcache
+  window.addEventListener('pageshow', e => {
+    if (e.persisted) {
+      window.location.reload();
     }
+  });
+
+  // show a “verifying” message
+  alertItem.classList.remove('text-red-500');
+  alertItem.classList.add('text-green-500');
+  alertItem.textContent = 'Verifying user…';
+  alertItem.classList.remove('hidden');
+
+  try {
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-TOKEN": document
+          .querySelector('meta[name="csrf-token"]')
+          .getAttribute("content"),
+      },
+      body: JSON.stringify({ mobile }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok && data.url) {
+      // replace the current history entry and navigate in the same tab
+      window.location.replace(data.url);
+
+      // clean up
+      alertItem.classList.add('hidden');
+      localStorage.removeItem('phone');
+      localStorage.removeItem('otpDelChnl');
+    } else {
+      // show error and stay on the same page
+      alertItem.classList.remove('text-green-500');
+      alertItem.classList.add('text-red-500');
+      alertItem.textContent = data.error || 'Login failed';
+    }
+  } catch (err) {
+    console.error("Error in loginInvestwell:", err);
+    alertItem.classList.remove('text-green-500');
+    alertItem.classList.add('text-red-500');
+    alertItem.textContent = "An error occurred. Please try again.";
+  } finally {
+    const btn = document.getElementById('verify-otp');
+    if (btn) {
+      btn.innerHTML = 'Verify';
+      btn.disabled = false;
+    }
+  }
 }
+
 
 // Handle OTP Verification
 async function verifyOTP() {

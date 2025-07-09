@@ -103,52 +103,45 @@ class InvestwellController extends Controller
         }
     }
 
-    public function getUsername($mobile)
+    public function getUsername(string $mobile): ?string
     {
+        // strip leading '+'
         if (str_starts_with($mobile, '+')) {
             $mobile = ltrim($mobile, '+');
         }
 
-        try {
-            // Exceptional case for "9996006952" 
-            if ($mobile == "919996006952") {
-                throw new Exception("User not allowed");
-            }
-
-            // Query the MongoDB collection for all documents with the given mobile
-            $field = filter_var($mobile, FILTER_VALIDATE_EMAIL) ? 'EMAIL' : 'MOBILE';
-            $users = DB::connection('milestone_db')
-                    ->collection('MintDb')
-                    ->where($field, $mobile)
-                    ->get();
-            // Check if any users exist with the given mobile
-            if ($users->isEmpty()) {
-                throw new \Exception('User not found');
-            }
-
-            // If more than one document exists, find the first document where NAME == FAMILY HEAD
-            if ($users->count() > 1) {
-                $matchedUser = DB::connection('mongodb')->collection('MintDb')
-                    ->where('MOBILE', $mobile)
-                    ->whereRaw([
-                        '$expr' => [
-                            '$eq' => ['$NAME', '$FAMILY HEAD']
-                        ]
-                    ])
-                    ->first();
-
-                // Return the username from the matched document if found
-                if ($matchedUser) {
-                    return $matchedUser['USERNAME'] ?? null;
-                }
-            }
-
-            // If only one document exists or no match on NAME == FAMILY HEAD, return the first document's username
-            $firstUser = $users->first();
-            return $firstUser['USERNAME'] ?? null;
-        } catch (\Exception $e) {
-            // Re-throw or handle the exception
-            throw new \Exception($e->getMessage());
+        // exceptional block
+        if ($mobile === "919996006952") {
+            throw new \Exception("User not allowed");
         }
+
+        // decide which field to query
+        $field = filter_var($mobile, FILTER_VALIDATE_EMAIL) ? 'EMAIL' : 'MOBILE';
+
+        // pull *all* matching docs
+        $users = DB::connection('milestone_db')
+            ->collection('MintDb')
+            ->where($field, $mobile)
+            ->get();
+
+        // none found?
+        if ($users->isEmpty()) {
+            throw new \Exception('User not found');
+        }
+
+        // if more than one, try to find head-of-family (NAME == FAMILY HEAD)
+        $target = null;
+        if ($users->count() > 1) {
+            $target = $users->first(function($u) {
+                return isset($u['NAME'], $u['FAMILY HEAD'])
+                    && $u['NAME'] === $u['FAMILY HEAD'];
+            });
+        }
+
+        // fallback to the very first record
+        $target = $target ?: $users->first();
+
+        // return its USERNAME (or null)
+        return $target['USERNAME'] ?? null;
     }
 }

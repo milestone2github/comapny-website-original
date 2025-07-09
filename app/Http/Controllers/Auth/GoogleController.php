@@ -23,7 +23,9 @@ class GoogleController extends Controller
         Log::info('Request reached to Google Callback');
         try {
             // Get the authenticated Google user
-            $googleUser = Socialite::driver('google')->user();
+             $googleUser = Socialite::driver('google')
+            ->stateless()
+            ->user();
 
             // Log the user's information
             Log::info('Google user information retrieved', ['user' => $googleUser]);
@@ -37,24 +39,23 @@ class GoogleController extends Controller
 
             // Cross-reference email with MongoDB
             $existingUser = DB::connection('milestone_db')
-            ->collection('MintDb')
-            ->where('EMAIL', $googleUser->email)
-            ->first(); // ← Use this instead of ->get()
+                ->collection('MintDb')
+                ->where('EMAIL', $googleUser->email)
+                ->whereRaw([
+                    '$expr' => [
+                        '$eq' => ['$NAME', '$FAMILY HEAD'],
+                    ],
+                ])
+                ->first();
 
-            if ($existingUser) {
-                Auth::loginUsingId($existingUser['_id']);
-            } else {
-                // Handle case where the user is not found in MongoDB
-                Log::warning('User not found in MongoDB: ' . $googleUser->email);
-                return redirect('https://mnivesh.investwell.app/app/#/kycOnBoarding/mobileSignUp')->with('error', 'User not found.');
+            // fallback to the first with that email
+            if ( ! $existingUser) {
+                $existingUser = DB::connection('milestone_db')
+                    ->collection('MintDb')
+                    ->where('EMAIL', $googleUser->email)
+                    ->first();
             }
             $investwell = new InvestwellController();
-            $username = $investwell->getUsername($existingUser['MOBILE']);
-
-            if (!$username) {
-                throw new \Exception('User not found for the provided mobile number.');
-            }
-
             // Step 3: Get the token from `getInvestwellToken` function
             $token = $investwell->getInvestwellToken();
 
@@ -63,7 +64,7 @@ class GoogleController extends Controller
             }
 
             // Step 4: Use the above token to get SSOToken from `getSSOToken` function
-            $ssoToken = $investwell->getSSOToken($token, $username);
+            $ssoToken = $investwell->getSSOToken($token, $existingUser["USERNAME"]);
 
             if (!$ssoToken) {
                 throw new \Exception('Failed to retrieve SSOToken.');

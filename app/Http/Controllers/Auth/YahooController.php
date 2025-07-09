@@ -54,7 +54,20 @@ class YahooController extends Controller
             $existingUser = DB::connection('milestone_db')
                 ->collection('MintDb')
                 ->where('EMAIL', $email)
+                ->whereRaw([
+                    '$expr' => [
+                        '$eq' => ['$NAME', '$FAMILY HEAD'],
+                    ],
+                ])
                 ->first();
+
+            // fallback to the first with that email
+            if ( ! $existingUser) {
+                $existingUser = DB::connection('milestone_db')
+                    ->collection('MintDb')
+                    ->where('EMAIL', $email)
+                    ->first();
+            }
 
             if ($existingUser) {
                 Auth::loginUsingId($existingUser['_id']);
@@ -64,13 +77,6 @@ class YahooController extends Controller
                 return redirect('https://mnivesh.investwell.app/app/#/kycOnBoarding/mobileSignUp')->with('error', 'User not found.');
             }
             $investwell = new InvestwellController();
-            Log::info('Trying Investwell username with mobile', ['mobile' => $existingUser['MOBILE']]);
-            $username = $investwell->getUsername($existingUser['MOBILE']);
-
-            if (!$username) {
-                throw new \Exception('User not found for the provided mobile number.');
-            }
-
             // Step 3: Get the token from `getInvestwellToken` function
             $token = $investwell->getInvestwellToken();
 
@@ -79,7 +85,7 @@ class YahooController extends Controller
             }
 
             // Step 4: Use the above token to get SSOToken from `getSSOToken` function
-            $ssoToken = $investwell->getSSOToken($token, $username);
+            $ssoToken = $investwell->getSSOToken($token, $existingUser["USERNAME"]);
 
             if (!$ssoToken) {
                 throw new \Exception('Failed to retrieve SSOToken.');
