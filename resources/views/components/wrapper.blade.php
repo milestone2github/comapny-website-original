@@ -12,8 +12,8 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('css/output.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 </head>
 
 <body class="transition-all duration-500">
@@ -23,12 +23,14 @@
         $customPages = ['contact-us', 'about-us', 'small-cap-funds', 'large-cap-funds', 'mid-cap-funds', 'invest-plan', 'mutual-funds'];
         $marginClass = in_array(request()->path(), $customPages) ? 'py-6 mt-15' : 'py-6 mt-20';
     @endphp
+    <div class="scroll-container">
 
-    <main class="main-class container mx-auto {{ $marginClass }}">
-
-        {{$slot}}
-    </main>
-    @include('includes.footer')
+        <main class="main-class container mx-auto {{ $marginClass }}">
+            
+            {{$slot}}
+        </main>
+        @include('includes.footer')
+    </div>
 
     <script src="{{ asset('js/header.js') }}"></script>
     @stack('scripts')

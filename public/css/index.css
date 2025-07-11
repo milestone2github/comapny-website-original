@@ -1,17 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 html,
 body {
     scroll-behavior: smooth;
     height: 100%;
-    overflow-x: hidden;
-    /* Prevent default scrolling */
+    overflow: hidden;
 }
 
 body {
     display: flex;
     flex-direction: column;
 }
-
+.scroll-container {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 200vh;
+    scroll-behavior: smooth;
+}
 .blog-pagination nav p, .magazine-pagination  nav p {
   display: none;
 }
