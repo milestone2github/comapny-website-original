@@ -16,3 +16,9 @@ Route::post('ipos', [IpoController::class,'store'])->name('ipos.store');
 Route::post('/auth/phone', [OtpController::class, 'sendOtp']);
 Route::post('/auth/validate-otp', [OtpController::class, 'validateOtp']);
 Route::post('/auth/login-investwell', [InvestwellController::class, 'loginInvestwell']);
+
+Route::fallback(function(){
+    return response()->json([
+      'message' => 'Not Found.'
+    ], 404);
+});

@@ -18,11 +18,15 @@ class BlogController extends Controller
 
   public function read($slug)
   {
-    $blog = Blog::where('slug', $slug)
-      ->whereNull('deleted_at') // Ensure deleted_at is null
-      ->first();
+      $blog = Blog::where('slug', $slug)
+                  ->whereNull('deleted_at')
+                  ->first();
 
-    return view('blog.read', compact('blog'));
+      if (! $blog) {
+          abort(404);
+      }
+
+      return view('blog.read', compact('blog'));
   }
 
   public function uploadBlogImage(Request $request)
