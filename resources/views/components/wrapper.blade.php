@@ -25,7 +25,7 @@
     @endphp
     <div class="scroll-container">
 
-        <main class="main-class container mx-auto {{ $marginClass }}">
+        <main class="main-class mx-auto {{ $marginClass }}">
             
             {{$slot}}
         </main>
