@@ -304,6 +304,8 @@ background-color: #4f4f4f;
       padding-top:5px;
       width:103%;
   }
-  
+  .mobile-w{
+    width: 6rem;
+  }
 }
 

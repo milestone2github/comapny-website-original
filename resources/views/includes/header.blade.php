@@ -14,7 +14,7 @@
 
         <!-- Logo -->
         <a href="/" class="flex-shrink-0">
-            <img src="{{ asset('images/LOGOfinal.png') }}" alt="mNivesh Logo" class="w-32 h-auto">
+            <img src="{{ asset('images/LOGOfinal.png') }}" alt="mNivesh Logo" class="w-32 h-auto mobile-w">
         </a>
 
         <!-- Navigation Menu -->
