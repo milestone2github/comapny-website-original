@@ -6,17 +6,12 @@
 
 <x-wrapper>
   <section style="
-      position: relative;
-      margin-top: 3rem;
-      width: 100.5%;    
-      height: 15rem;    
-      left: 50%;           
-      margin-left: -50vw;
       background-image: url('https://mfdatafeed.blob.core.windows.net/company-website-images/mutual-7.png');
       background-size: cover;
       background-position: center;
       overflow: hidden;
-      ">
+      "
+      class="hero-section">
   </section>
 {{-- After your hero section, inside @section('content') --}}
 <div style="max-width: 1200px; margin: 0 auto; padding: 20px; box-sizing: border-box;">
@@ -201,32 +196,32 @@
   </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-    
-    <!-- Equity Funds -->
-    <div class="items-start space-x-4">
-      <div class="text-2xl w-10 h-10 mt-1 flex-shrink-0 ml-3">
-        <div class="w-10 h-10 bg-indigo-500 rounded p-1 flex items-center justify-center">
-          <img src="{{ asset('images/Equity Fund.png') }}"
-              alt="Equity fund"
-              class="w-full h-full object-contain filter invert brightness-0 saturate-100" />
-        </div>
+    <!-- Card 1: Equity Funds -->
+    <div class="flex items-start space-x-4">
+      <div class="flex-shrink-0 w-10 h-10 bg-indigo-500 rounded p-1 flex items-center justify-center">
+        <img
+          src="{{ asset('images/Equity Fund.png') }}"
+          alt="Equity fund"
+          class="w-full h-full object-contain"
+        />
       </div>
       <div>
         <h3 class="font-semibold text-lg mb-1">Equity funds</h3>
         <p>
-          Primarily invest in stocks and aim for capital appreciation, carrying higher risk but also higher return potential.
+          Primarily invest in stocks and aim for capital appreciation, carrying higher risk but also
+          higher return potential.
         </p>
       </div>
     </div>
 
-    <!-- Debt Funds -->
-    <div class="items-start space-x-4">
-      <div class="text-2xl w-10 h-10 mt-1 flex-shrink-0 ml-3">
-        <div class="w-10 h-10 bg-indigo-500 rounded p-1 flex items-center justify-center">
-          <img src="{{ asset('images/Debt Fund.png') }}"
-              alt="Debt fund"
-              class="w-full h-full object-contain filter invert brightness-0 saturate-100" />
-        </div>
+    <!-- Card 2: Debt Funds -->
+    <div class="flex items-start space-x-4">
+      <div class="flex-shrink-0 w-10 h-10 bg-indigo-500 rounded p-1 flex items-center justify-center">
+        <img
+          src="{{ asset('images/Debt Fund.png') }}"
+          alt="Debt fund"
+          class="w-full h-full object-contain"
+        />
       </div>
       <div>
         <h3 class="font-semibold text-lg mb-1">Debt funds</h3>
@@ -236,25 +231,27 @@
       </div>
     </div>
 
-    <!-- Hybrid Funds -->
-    <div class="items-start space-x-4">
-      <div class="text-2xl w-10 h-10 mt-1 flex-shrink-0 ml-3">
-        <div class="w-10 h-10 bg-indigo-500 rounded p-1 flex items-center justify-center">
-          <img src="{{ asset('images/Hybrid Fund.png') }}"
-              alt="Hybrid fund"
-              class="w-full h-full object-contain filter invert brightness-0 saturate-100" />
-        </div>
+    <!-- Card 3: Hybrid Funds -->
+    <div class="flex items-start space-x-4">
+      <div class="flex-shrink-0 w-10 h-10 bg-indigo-500 rounded p-1 flex items-center justify-center">
+        <img
+          src="{{ asset('images/Hybrid Fund.png') }}"
+          alt="Hybrid fund"
+          class="w-full h-full object-contain"
+        />
       </div>
+      <div>
         <h3 class="font-semibold text-lg mb-1">Hybrid funds</h3>
         <p>
-          Strike a balance by investing in both equity and debt. Other specialized funds include ELSS (Equity Linked Savings Schemes) for tax benefits, liquid funds for short term parking of funds, and index funds that track specific market indices.
+          Strike a balance by investing in both equity and debt. Other specialized funds include ELSS
+          (Equity Linked Savings Schemes) for tax benefits, liquid funds for short‐term parking of
+          funds, and index funds that track specific market indices.
         </p>
       </div>
     </div>
-
   </div>
 </div>
-
+ 
 
   <div style="max-width: 1200px; margin: 0 auto; padding: 40px 24px; box-sizing: border-box;">
     <div style="

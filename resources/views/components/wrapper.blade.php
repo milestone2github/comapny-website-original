@@ -21,7 +21,7 @@
     @include('includes.floater')
     @php
         $customPages = ['contact-us', 'about-us', 'small-cap-funds', 'large-cap-funds', 'mid-cap-funds', 'invest-plan', 'mutual-funds'];
-        $marginClass = in_array(request()->path(), $customPages) ? 'py-6 mt-15' : 'py-6 mt-20';
+        $marginClass = in_array(request()->path(), $customPages) ? 'py-6 mt-18' : 'py-6 mt-20';
     @endphp
     <div class="scroll-container">
 

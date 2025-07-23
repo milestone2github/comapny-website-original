@@ -6,17 +6,12 @@
 
 <x-wrapper>
   <section style="
-      position: relative;
-      margin-top: 3rem;
-      width: 100.5%;    
-      height: 15rem;    
-      left: 50%;           
-      margin-left: -50vw;
       background-image: url('https://mfdatafeed.blob.core.windows.net/company-website-images/mid-1.png');
       background-size: cover;
       background-position: center;
       overflow: hidden;
-      ">
+      "
+      class="hero-section">
   </section>
 {{-- After your hero section, inside @section('content') --}}
 <div style="max-width: 1200px; margin: 0 auto; padding: 20px; box-sizing: border-box;">

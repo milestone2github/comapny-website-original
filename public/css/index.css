@@ -38,3 +38,23 @@ body {
 .blog-content-summary strong, .blog-content-summary b {
   font-weight: normal !important;
 }
+
+.hero-section{
+  position: relative;
+  margin-top: 3.5rem;
+  width: 100.5%;    
+  height: 15rem;    
+  left: 50%;           
+  margin-left: -50vw;
+}
+
+@media (max-width: 768px) {
+  .hero-section{
+    margin-top: 4rem;
+    width: 100.5%;    
+    height: 15rem;    
+    left: 46%;           
+    margin-left: -50vw;
+  }
+
+}
