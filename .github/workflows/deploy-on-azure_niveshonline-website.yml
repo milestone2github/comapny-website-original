@@ -15,35 +15,28 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 1) Build mongodb.so matching PHP 8.2
-      - name: Install PHP 8.2 toolchain (for building ext)
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y software-properties-common
-          sudo add-apt-repository ppa:ondrej/php -y
-          sudo apt-get update
-          sudo apt-get install -y php8.2 php8.2-dev php-pear build-essential
+      # Load PHP 8.2 with mongodb on the runner (no manual PECL build)
+      - name: Setup PHP (8.2 with mongodb)
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mongodb
+          tools: composer
 
-      - name: Build mongodb extension via PECL
+      # Copy the runner's mongodb.so into the repo so Azure can load it at runtime
+      - name: Copy mongodb.so into bin
         run: |
-          printf "\n" | sudo pecl install mongodb
           EXT_DIR=$(php -i | awk -F'=> ' '/extension_dir/ {print $2}')
           mkdir -p bin
           cp "$EXT_DIR/mongodb.so" bin/mongodb.so
           ls -l bin
 
-      # 2) App dependencies
-      - name: Setup PHP for Composer
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-          tools: composer
-
-      - name: Install Composer deps (ignore ext-mongodb on runner)
+      # Composer deps (ext-mongodb is available on runner now)
+      - name: Install Composer deps
         run: |
-          composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader --ignore-platform-req=ext-mongodb
+          composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader
 
-      # 3) Laravel optimizations (safe ones)
+      # Safe Laravel optimizations (no DB actions)
       - name: Laravel optimize (no DB actions)
         run: |
           php artisan config:clear
@@ -52,13 +45,13 @@ jobs:
           php artisan view:cache
           php artisan storage:link || true
 
-      # 4) Provide custom ini that loads the extension at runtime
+      # Provide custom ini to load mongodb.so on Azure
       - name: Create custom ini to load mongodb.so
         run: |
           mkdir -p .ini
           echo "extension=/home/site/wwwroot/bin/mongodb.so" > .ini/extensions.ini
 
-      # 6) Package artifact
+      # Package artifact
       - name: Upload artifact for deployment
         uses: actions/upload-artifact@v4
         with:
