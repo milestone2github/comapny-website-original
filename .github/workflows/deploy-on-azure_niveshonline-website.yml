@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout
-      - uses: actions/checkout@v4
+        uses: actions/checkout@v4
 
       # 1) Build mongodb.so matching PHP 8.2
       - name: Install PHP 8.2 toolchain (for building ext)
@@ -50,7 +50,6 @@ jobs:
           php artisan config:cache
           php artisan route:cache
           php artisan view:cache
-          # storage:link is OK; if you prefer do it once via SSH after first deploy:
           php artisan storage:link || true
 
       # 4) Provide custom ini that loads the extension at runtime
