@@ -46,11 +46,11 @@ jobs:
           mkdir -p bin
           cp "$SRC" bin/mongodb.so
           ls -l bin
-          
+
       # Composer deps (ext-mongodb is available on runner now)
       - name: Install Composer deps
         run: |
-          composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader
+          composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader --ignore-platform-req=ext-mongodb
 
       # Safe Laravel optimizations (no DB actions)
       - name: Laravel optimize (no DB actions)
