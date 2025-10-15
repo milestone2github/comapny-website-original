@@ -26,11 +26,27 @@ jobs:
       # Copy the runner's mongodb.so into the repo so Azure can load it at runtime
       - name: Copy mongodb.so into bin
         run: |
-          EXT_DIR=$(php -i | awk -F'=> ' '/extension_dir/ {print $2}')
-          mkdir -p bin
-          cp "$EXT_DIR/mongodb.so" bin/mongodb.so
-          ls -l bin
+          EXT_DIR="$(php -r 'echo ini_get("extension_dir");')"
+          echo "extension_dir is: $EXT_DIR"
+          SRC="$EXT_DIR/mongodb.so"
 
+          if [ ! -f "$SRC" ]; then
+            echo "mongodb.so not found at $SRC, searching..."
+            SRC="$(find /usr/lib /usr/local/lib /opt -type f -name mongodb.so 2>/dev/null | head -n 1 || true)"
+          fi
+
+          if [ -z "$SRC" ] || [ ! -f "$SRC" ]; then
+            echo "ERROR: Could not locate mongodb.so on the runner"
+            php -m | sort
+            php -i | grep -i extension_dir -n || true
+            exit 1
+          fi
+
+          echo "Found mongodb.so at: $SRC"
+          mkdir -p bin
+          cp "$SRC" bin/mongodb.so
+          ls -l bin
+          
       # Composer deps (ext-mongodb is available on runner now)
       - name: Install Composer deps
         run: |
