@@ -1,0 +1,102 @@
+name: Build and deploy PHP app to Azure Web App - niveshonline-website
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Setup PHP 8.2 with MongoDB preinstalled
+      - name: Setup PHP (8.2 with mongodb)
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mongodb
+          tools: composer
+
+      # Copy mongodb.so into bin (so Azure can load it at runtime)
+      - name: Copy mongodb.so into bin
+        run: |
+          EXT_DIR="$(php -r 'echo ini_get("extension_dir");')"
+          echo "extension_dir is: $EXT_DIR"
+          SRC="$EXT_DIR/mongodb.so"
+
+          if [ ! -f "$SRC" ]; then
+            echo "mongodb.so not found at $SRC, searching..."
+            SRC="$(find /usr/lib /usr/local/lib /opt -type f -name mongodb.so 2>/dev/null | head -n 1 || true)"
+          fi
+
+          if [ -z "$SRC" ] || [ ! -f "$SRC" ]; then
+            echo "ERROR: Could not locate mongodb.so on the runner"
+            php -m | sort
+            php -i | grep -i extension_dir -n || true
+            exit 1
+          fi
+
+          echo "Found mongodb.so at: $SRC"
+          mkdir -p bin
+          cp "$SRC" bin/mongodb.so
+          ls -l bin
+
+      # Install Composer dependencies (skip platform req check)
+      - name: Install Composer dependencies
+        run: |
+          composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader --ignore-platform-req=ext-mongodb
+
+      # Clear and rebuild Laravel caches (automatic)
+      - name: Rebuild Laravel caches
+        run: |
+          php artisan config:clear
+          php artisan config:cache
+          php artisan route:cache
+          php artisan view:cache
+          php artisan storage:link || true
+
+      # Create custom PHP ini file to load mongodb.so on Azure
+      - name: Create custom ini to load mongodb.so
+        run: |
+          mkdir -p .ini
+          echo "extension=/home/site/wwwroot/bin/mongodb.so" > .ini/extensions.ini
+
+      # Package everything for deployment
+      - name: Upload artifact for deployment
+        uses: actions/upload-artifact@v4
+        with:
+          name: php-app
+          path: .
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: php-app
+
+      - name: Azure Login (federated)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_2CD8CA237E7A4846BBA8D8FFE7F34F9F }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_4EC87C0C6FAB446DA00776CD4B1D8A1D }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7F8A2E4B2D8146B19D3A3EAB520CCFC2 }}
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'niveshonline-website'
+          slot-name: 'Production'
+          package: .

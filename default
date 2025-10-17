@@ -1,0 +1,46 @@
+server {
+    listen 8080;
+    listen [::]:8080;
+
+    # Laravel public directory as web root
+    root /home/site/wwwroot/public;
+    index index.php index.html index.htm;
+
+    server_name _;
+    port_in_redirect off;
+
+    # Main app routing
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    # Process PHP scripts
+    location ~ \.php$ {
+        include fastcgi_params;
+        fastcgi_pass 127.0.0.1:9000;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+        fastcgi_intercept_errors on;
+
+        # Recommended timeouts
+        fastcgi_connect_timeout 60s;
+        fastcgi_send_timeout 300s;
+        fastcgi_read_timeout 300s;
+
+        # Buffers for larger responses
+        fastcgi_buffer_size 128k;
+        fastcgi_buffers 4 256k;
+        fastcgi_busy_buffers_size 256k;
+        fastcgi_temp_file_write_size 256k;
+    }
+
+    # Deny access to hidden files like .env, .git, etc.
+    location ~ /\.(?!well-known).* {
+        deny all;
+        access_log off;
+        log_not_found off;
+    }
+
+    # Custom error pages (optional)
+    error_page 404 /index.php;
+}
