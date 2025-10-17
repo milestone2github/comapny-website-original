@@ -15,7 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Load PHP 8.2 with mongodb on the runner (no manual PECL build)
+      # Setup PHP 8.2 with MongoDB preinstalled
       - name: Setup PHP (8.2 with mongodb)
         uses: shivammathur/setup-php@v2
         with:
@@ -23,7 +23,7 @@ jobs:
           extensions: mongodb
           tools: composer
 
-      # Copy the runner's mongodb.so into the repo so Azure can load it at runtime
+      # Copy mongodb.so into bin (so Azure can load it at runtime)
       - name: Copy mongodb.so into bin
         run: |
           EXT_DIR="$(php -r 'echo ini_get("extension_dir");')"
@@ -47,27 +47,30 @@ jobs:
           cp "$SRC" bin/mongodb.so
           ls -l bin
 
-      # Composer deps (ext-mongodb is available on runner now)
-      - name: Install Composer deps
+      # Install Composer dependencies (skip platform req check)
+      - name: Install Composer dependencies
         run: |
           composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader --ignore-platform-req=ext-mongodb
 
-      # Safe Laravel optimizations (no DB actions)
-      - name: Laravel optimize (no DB actions)
+      # Clear and rebuild Laravel caches (automatic)
+      - name: Rebuild Laravel caches
         run: |
           php artisan config:clear
+          php artisan cache:clear
+          php artisan route:clear
+          php artisan view:clear
           php artisan config:cache
           php artisan route:cache
           php artisan view:cache
           php artisan storage:link || true
 
-      # Provide custom ini to load mongodb.so on Azure
+      # Create custom PHP ini file to load mongodb.so on Azure
       - name: Create custom ini to load mongodb.so
         run: |
           mkdir -p .ini
           echo "extension=/home/site/wwwroot/bin/mongodb.so" > .ini/extensions.ini
 
-      # Package artifact
+      # Package everything for deployment
       - name: Upload artifact for deployment
         uses: actions/upload-artifact@v4
         with:
