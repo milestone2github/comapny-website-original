@@ -8,6 +8,8 @@ use App\Http\Controllers\Auth\YahooController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\FixedDepositController;
 use App\Http\Controllers\MagazineController;
+use App\Http\Controllers\TermController;
+use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\IpoController;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ContactFormController;
@@ -119,3 +121,7 @@ Route::get('/blogs/{slug}', [BlogController::class, 'read'])->name('blog.read');
 // Magazines routes 
 Route::get('/magazines', [MagazineController::class, 'index'])->name('magazine.index');
 Route::get('/magazines/{slug}', [MagazineController::class, 'read'])->name('magazine.read');
+
+// terms and policy routes 
+Route::get('/terms-conditions', [TermController::class, 'term'])->name('term');
+Route::get('/privacy-policy', [PolicyController::class, 'policy'])->name('policy');

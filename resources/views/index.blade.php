@@ -67,10 +67,14 @@
         }
 
         footer.section {
-            min-height: fit-content;
+            min-height: 70vh;
             padding: 3rem 1rem 3rem 1rem;
         }
-
+        @media (max-width: 768px) {
+            footer.section {
+                min-height: 135%;
+            }
+        }
         /* Optional: For better user experience, you can add hover or focus states */
         .section:hover {
             background-color: #2c2f36;
@@ -738,13 +742,13 @@
 
             magazines.forEach(magazine => {
                 const magazineCard = document.createElement("div");
-                magazineCard.classList.add("flex", "flex-col", "border", "border-gray-700", "shadow-lg", "rounded-xl", "overflow-hidden", "hover:shadow-2xl", "transition-shadow", "duration-300", "section-card");
+                magazineCard.classList.add("flex", "flex-col", "shadow-lg", "rounded-xl", "overflow-hidden", "hover:shadow-2xl", "transition-shadow", "duration-300", "section-card");
                 const raw = new Date(magazine.release_date);
 
                 const opts      = { day: '2-digit', month: 'short', year: 'numeric' };
                 const pretty    = raw.toLocaleDateString('en-IN', opts);
                 magazineCard.innerHTML = `
-                    <a style="height: 300px;" href="https://mfdatafeed.blob.core.windows.net/magazine/${magazine.pdf_url}" target="_blank" title="Open ${magazine.issue_name}">
+                    <a style="height: 400px;width:auto;" href="https://mfdatafeed.blob.core.windows.net/magazine/${magazine.pdf_url}" target="_blank" title="Open ${magazine.issue_name}">
                         <img 
                             class="magazine-mobile"
                             style="margin: 0% 21%; max-width:100%; max-height:75%;" 
@@ -993,8 +997,11 @@
             <div class="container mx-auto text-center">
 
                 <!-- Blogs Section -->
-                <h3 class="text-4xl font-bold gradient-text mb-6">Latest Insights & Blogs</h3>
-                <p class="text-lg text-gray-600 mb-8">Explore insights on financial strategies, market trends, and investment tips.</p>
+                <h3 class="text-4xl font-bold gradient-text mb-2">Latest Insights & Blogs</h3>
+                <p class="text-lg text-gray-400 mb-8">
+                    Explore insights on financial strategies, market trends, and investment tips.
+                </p>
+
 
                 <div id='blog-container' class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                     <a href="/blogs" class="blog-card bg-white text-yellow-500 rounded-lg shadow-lg overflow-hidden flex items-center justify-center hover:underline section-card">
@@ -1005,14 +1012,14 @@
         <section id="section-magazine" class="section bg-gray-100">
             <div class="container mx-auto text-center">
                 <!-- Magazines Section -->
-                <h3 class="text-4xl font-bold gradient-text mb-6">Latest Magazines</h3>
-                <p class="text-lg text-gray-600 mb-8">Browse our collection of insightful magazines covering various financial topics.</p>
+                <h3 class="text-4xl font-bold gradient-text mb-2">Latest Magazines</h3>
+                <p class="text-lg text-gray-400 mb-8">Browse our collection of insightful magazines covering various financial topics.</p>
 
                 <div id='magazine-container' class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     <!-- Magazine Card 1 -->
 
                     <!-- View All Magazines Card -->
-                    <a href="/magazines" id="view-all-magazines" class="border border-gray-700 rounded-lg shadow-lg overflow-hidden flex items-center justify-center hover:underline section-card">
+                    <a href="/magazines" id="view-all-magazines" class="rounded-lg shadow-lg overflow-hidden flex items-center justify-center hover:underline section-card">
                         <div class="block text-center text-yellow-500 font-bold text-lg">View All Magazines</div>
                     </a>
 

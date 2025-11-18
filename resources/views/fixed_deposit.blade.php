@@ -27,7 +27,7 @@
                   <tr class="border-b border-gray-200">
                     <td class="p-2">
                       <a href="{{url('/fd-calculator/'.$val->slug)}}" title="">
-                        <img src="{{asset('storage/deposit/'.$val->logo)}}" alt="Logo" class="w-24 h-12">
+                        <img src="{{asset('storages/deposit/'.$val->logo)}}" alt="Logo" class="w-24 h-12">
                       </a>
                     </td>
                     <td class="p-2">
