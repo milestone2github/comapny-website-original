@@ -104,7 +104,6 @@
       </p>
     </div>
   </div>
-</div>
 
 {{-- Features & Advantages --}}
 <div style="max-width: 1000px; margin: 3rem auto; padding: 0 1rem; box-sizing: border-box;">

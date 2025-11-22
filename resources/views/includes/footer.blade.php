@@ -48,7 +48,7 @@
 
             <!-- Footer Bottom Section -->
             <div class="mt-12 text-center text-gray-500 text-sm border-t border-gray-700 pt-4">
-                <p>&copy; 2024 mNivesh. All rights reserved. | <a href="/terms" class="hover:underline text-yellow-500">Terms of Service</a> | <a href="/privacy" class="hover:underline text-yellow-500">Privacy Policy</a></p>
+                <p>&copy; 2024 mNivesh. All rights reserved. | <a href="/terms-conditions" class="hover:underline text-yellow-500">Terms of Service</a> | <a href="/privacy-policy" class="hover:underline text-yellow-500">Privacy Policy</a></p>
             </div>
         </footer>
 <script>

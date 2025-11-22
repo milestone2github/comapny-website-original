@@ -67,10 +67,14 @@
         }
 
         footer.section {
-            min-height: fit-content;
-            padding: 3rem 1rem 3rem 1rem;
+            min-height: 70vh;
+            padding: 0rem 1rem 3rem 1rem;
         }
-
+        @media (max-width: 768px) {
+            footer.section {
+                min-height: 135%;
+            }
+        }
         /* Optional: For better user experience, you can add hover or focus states */
         .section:hover {
             background-color: #2c2f36;
@@ -520,29 +524,47 @@
         z-index: 2;
         position: relative;
         }
-         #blog-container,
-    #magazine-container {
-        display: flex !important;      /* override the grid */
-        flex-direction: row;           /* lay items out in a row */
-        flex-wrap: nowrap;             /* don’t wrap to next line */
-        gap: 1rem;                     /* space between cards */
-        overflow-x: auto;              /* allow horizontal scroll */
-        padding-bottom: 1rem;          /* room for scrollbar */
-        -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
-        scroll-snap-type: x mandatory; /* optional: snap to cards */
+         #blog-container, #magazine-container {
+        display: flex !important;      
+        flex-direction: row;          
+        flex-wrap: nowrap;             
+        gap: 1rem;                   
+        overflow-x: auto;           
+        padding-bottom: 1rem;    
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
     }
 
     /* Prevent cards from shrinking and make them snap */
-    #blog-container > *,
-    #magazine-container > * {
-        flex: 0 0 auto;               /* keep each card’s natural width */
-        scroll-snap-align: start;     /* optional: snap each card into place */
+        #blog-container > *{
+        flex: 0 0 auto;              
+        scroll-snap-align: start;   
     }   
-    .magazine-mobile{
-        margin-left:17% !important;
-    }
+    
     .section-card{
         width: 70%;
+    }
+
+    /* Magazine mobile layout: show one full cover and a peek of the next */
+    #section-magazine #magazine-container {
+        overflow-x: auto;
+        gap: 0.75rem;
+        padding: 0 1rem 1.25rem 1rem;
+        scroll-snap-type: x mandatory;
+    }
+
+    #section-magazine #magazine-container > * {
+        flex: 0 0 82%;
+        scroll-snap-align: start;
+    }
+
+    #section-magazine #magazine-container::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    #section-magazine #magazine-container::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.25);
+        border-radius: 9999px;
     }
     }
     </style>
@@ -728,52 +750,62 @@
             });
         }
 
-        // Load magazine dynamically
+        // Load magazines dynamically
         async function loadmagazine() {
+        try {
             const response = await fetch('/api/magazines');
             const magazines = await response.json();
 
-            const magazineContainer = document.querySelector("#magazine-container");
-            const viewAllMagazine = document.getElementById("view-all-magazines");
+            const magazineContainer = document.querySelector('#magazine-container');
+            const viewAllMagazine = document.getElementById('view-all-magazines');
 
-            magazines.forEach(magazine => {
-                const magazineCard = document.createElement("div");
-                magazineCard.classList.add("flex", "flex-col", "border", "border-gray-700", "shadow-lg", "rounded-xl", "overflow-hidden", "hover:shadow-2xl", "transition-shadow", "duration-300", "section-card");
-                const raw = new Date(magazine.release_date);
+            magazines.forEach((magazine) => {
+            const raw = new Date(magazine.release_date);
+            const opts = { day: '2-digit', month: 'short', year: 'numeric' };
+            const pretty = raw.toLocaleDateString('en-GB', opts);
 
-                const opts      = { day: '2-digit', month: 'short', year: 'numeric' };
-                const pretty    = raw.toLocaleDateString('en-IN', opts);
-                magazineCard.innerHTML = `
-                    <a style="height: 300px;" href="https://mfdatafeed.blob.core.windows.net/magazine/${magazine.pdf_url}" target="_blank" title="Open ${magazine.issue_name}">
-                        <img 
-                            class="magazine-mobile"
-                            style="margin: 0% 21%; max-width:100%; max-height:75%;" 
-                            src="/images/magazine_covers/${magazine.image_url}" 
-                            alt="${magazine.issue_name}"
-                            >
-                        <div class="px-4 py-2 flex flex-col">
-                            <h4 style="
-                                font-size: 1.5rem;
-                                font-weight: bold;
-                                margin-bottom: 0.5rem;
-                                overflow: hidden;
-                                white-space: nowrap;
-                                text-overflow: ellipsis;
-                                display: block;
-                                transition: transform 5s linear;
-                                ">
-                                ${magazine.issue_name}
-                                </h4>
+            // Whole card is clickable
+            const magazineCard = document.createElement('a');
+            magazineCard.href = `https://mfdatafeed.blob.core.windows.net/magazine/${magazine.pdf_url}`;
+            magazineCard.target = '_blank';
+            magazineCard.title = `Open ${magazine.issue_name}`;
+            magazineCard.className =
+                'group flex flex-col rounded-3xl' +
+                'px-4 py-6 md:px-6 md:py-8 bg-transparent hover:border-yellow-400/80 ' +
+                'transition-colors duration-200';
 
-                            <p class="text-gray-500 text-xs mt-1">${pretty}</p>
-                        </div>
-                    </a>
-                `;
+            magazineCard.innerHTML = `
+                <h4
+                class="mb-4 h-12 text-sm md:text-base font-semibold text-left text-gray-100 line-clamp-2"
+                style="
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                    overflow: hidden;
+                "
+                >
+                ${magazine.issue_name}
+                </h4>
 
-                // Append the card to the container before the view all link
-                magazineContainer.insertBefore(magazineCard, viewAllMagazine);
+                <div class="flex-1 flex items-center justify-center mb-4">
+                <img
+                    class="w-full max-w-[11rem] aspect-[35/47] rounded-lg object-cover"
+                    src="/images/magazine_covers/${magazine.image_url}"
+                    alt="${magazine.issue_name}"
+                />
+                </div>
+
+                <p class="text-[11px] h-8 md:text-xs text-gray-400 text-center mt-auto">
+                ${pretty}
+                </p>
+            `;
+
+            // Insert each card before the View All card
+            magazineContainer.insertBefore(magazineCard, viewAllMagazine);
             });
-
+        } catch (err) {
+            console.error('Failed to load magazines', err);
+        }
         }
 
 
@@ -993,8 +1025,11 @@
             <div class="container mx-auto text-center">
 
                 <!-- Blogs Section -->
-                <h3 class="text-4xl font-bold gradient-text mb-6">Latest Insights & Blogs</h3>
-                <p class="text-lg text-gray-600 mb-8">Explore insights on financial strategies, market trends, and investment tips.</p>
+                <h3 class="text-4xl font-bold gradient-text mb-2">Latest Insights & Blogs</h3>
+                <p class="text-lg text-gray-400 mb-8">
+                    Explore insights on financial strategies, market trends, and investment tips.
+                </p>
+
 
                 <div id='blog-container' class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                     <a href="/blogs" class="blog-card bg-white text-yellow-500 rounded-lg shadow-lg overflow-hidden flex items-center justify-center hover:underline section-card">
@@ -1002,23 +1037,41 @@
                     </a>
                 </div>
         </section>
-        <section id="section-magazine" class="section bg-gray-100">
-            <div class="container mx-auto text-center">
-                <!-- Magazines Section -->
-                <h3 class="text-4xl font-bold gradient-text mb-6">Latest Magazines</h3>
-                <p class="text-lg text-gray-600 mb-8">Browse our collection of insightful magazines covering various financial topics.</p>
+        <section id="section-magazine" class="section bg-gray-950 py-16">
+            <div class="container mx-auto px-4">
+                <!-- Heading -->
+                <div class="text-center mb-10">
+                    <h3 class="text-3xl md:text-4xl font-bold gradient-text mb-2">
+                        Latest Magazines
+                    </h3>
+                    <p class="text-sm md:text-lg text-gray-400">
+                        Browse our collection of insightful magazines covering various financial topics.
+                    </p>
+                </div>
 
-                <div id='magazine-container' class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Magazine Card 1 -->
+                <!-- Cards -->
+                <div id="magazine-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 items-stretch">
+                    <!-- View All Magazines Card (will always stay as the last item) -->
+                    <div 
+                        id="view-all-magazines"
+                        class="group flex flex-col items-center justify-center px-6 py-10 md:px-8 md:py-12 bg-transparent transition-colors duration-200"
+                        title="View All Magazines"
+                    >
 
-                    <!-- View All Magazines Card -->
-                    <a href="/magazines" id="view-all-magazines" class="border border-gray-700 rounded-lg shadow-lg overflow-hidden flex items-center justify-center hover:underline section-card">
-                        <div class="block text-center text-yellow-500 font-bold text-lg">View All Magazines</div>
-                    </a>
-
+                        <span class="mb-4 h-9 text-sm md:text-base font-semibold text-left text-gray-100 line-clamp-2"></span>
+                        <a 
+                            class="flex-1 flex items-center justify-center w-full max-w-[11rem] aspect-[35/47] border border-gray-400 rounded-lg hover:border-yellow-400"
+                            href="/magazines">
+                            <span class="text-sm md:text-base font-medium tracking-wide text-gray-100 group-hover:text-yellow-400">
+                                View All
+                            </span>
+                        </a>
+                        <span class="text-[11px] h-8 md:text-xs text-gray-400 text-center mt-auto"></span>
+                    </div>
                 </div>
             </div>
         </section>
+
         @include('includes.footer')
     </div>
 </main>
