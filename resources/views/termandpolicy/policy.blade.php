@@ -140,11 +140,13 @@
         <h2 class="section-title">14. Grievance Officer</h2>
         <p class="section-text">
             <strong>Data Fiduciary:</strong> Milestone Global Moneymart Private Limited <br>
-            <strong>Grievance Officer:</strong> [Insert Name] <br>
             <strong>Email:</strong> privacy@niveshonline.com <br>
-            <strong>Phone:</strong> [Insert Phone Number] <br>
-            <strong>Address:</strong> [Insert Registered Office Address]
+            <strong>Phone:</strong> +91 8269135135 <br>
+            <strong>Registered Office Address:</strong> 101-G, First Floor, Crown Heights, Twin District Centre, Sector-10, Rohini, North Delhi, New Delhi – 110085, India <br>
+            <strong>Corporate Office Address:</strong> 702, Seventh Floor, Crown Heights, Twin District Centre, Sector-10, Rohini, North Delhi, New Delhi – 110085, India
         </p>
+
+
 
         <h2 class="section-title">15. Breach Notification & Remedies</h2>
         <p class="section-text">

@@ -78,25 +78,27 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     permissions:
-      id-token: write
-      contents: read
+      id-token: write #This is required for requesting the JWT
+      contents: read #This is required for actions/checkout
 
     steps:
-      - name: Download build artifact
+      - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: php-app
-
-      - name: Azure Login (federated)
+      
+      - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_2CD8CA237E7A4846BBA8D8FFE7F34F9F }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_4EC87C0C6FAB446DA00776CD4B1D8A1D }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7F8A2E4B2D8146B19D3A3EAB520CCFC2 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_5F3A8BC8343A472DB4E5659D84985760 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_20CFA2F66E3F4450ABD473BF3DC6E037 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_BE259A0BC329460AB3EE5B89494BFA02 }}
 
-      - name: Deploy to Azure Web App
+      - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
+        id: deploy-to-webapp
         with:
           app-name: 'niveshonline-website'
           slot-name: 'Production'
           package: .
+          
