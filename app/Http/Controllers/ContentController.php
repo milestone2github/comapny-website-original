@@ -8,24 +8,53 @@ use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 use App\Models\SectionOne;
 use App\Models\Offering;
+use Illuminate\Support\Facades\DB;
 
 class ContentController extends Controller
 {
     public function getSectionOneData()
     {
-        // Fetch the first document using the Eloquent model
         $sectionData = SectionOne::first();
 
-        // Provide default values if no data is found
         if (!$sectionData) {
-            $sectionData = [
+            $sectionData = (object) [
                 'title' => 'Default Title',
                 'description' => 'Default Description',
-                'image_url' => '/path/to/default/image.jpg'
+                'image_url' => '/path/to/default/image.jpg',
             ];
         }
-        return response()->json($sectionData);
+
+        $clients = DB::connection('milestone_db')
+                    ->collection('MintDb')
+                    ->count();
+
+        $totalAumRupees = DB::connection('milestone_db')
+                            ->collection('MintDb')
+                            ->sum('AUM');
+
+        $teamCount = DB::connection('mftransaction_db')
+                        ->collection('users')
+                        ->count();
+
+        $replacements = [
+            '{{aum}}'     => (int) floor(($totalAumRupees ?: 0) / 10000000),
+            '{{clients}}' => (int) $clients,
+            '{{team}}'    => (int) ($teamCount + 5),
+            '{{years}}'   => (int) (date('Y') - 2006),
+        ];
+        $finalDescription = str_replace(
+            array_keys($replacements),
+            array_values($replacements),
+            $sectionData->description
+        );
+
+        return response()->json([
+            'title'       => $sectionData->title,
+            'description' => $finalDescription,
+            'image_url'   => $sectionData->image_url,
+        ]);
     }
+
 
     public function getOfferings()
     {

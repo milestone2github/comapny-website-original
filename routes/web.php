@@ -111,6 +111,11 @@ Route::get('/fd-calculator/{slug}', [FixedDepositController::class, 'fd_calculat
 Route::view('/domestic-stock-market', 'domestic_stock');
 Route::view('/international-stock-market', 'international_stock');
 
+// bonds routes 
+Route::view('/govt-bond', 'govt_bonds');
+Route::view('/corp-bond', 'corp_bonds');
+Route::view('/taxfree-bond', 'tax_free_bonds');
+
 // unlisted detail disclaimer 
 Route::view('/unlisted-deal-disclaimer', 'unlisted_disclaimer');
 
